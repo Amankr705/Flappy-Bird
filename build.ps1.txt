@@ -1,0 +1,25 @@
+ pyinstaller
+ --noconfirm 
+ --clean
+ --onefile
+ --name "Flappy Bird"
+ --add-data "images/0.png;images"
+ --add-data "images/1.png;images"
+ --add-data "images/2.png;images"
+ --add-data "images/3.png;images"
+ --add-data "images/4.png;images"
+ --add-data "images/5.png;images"
+ --add-data "images/6.png;images"
+ --add-data "images/7.png;images"
+ --add-data "images/8.png;images"
+ --add-data "images/9.png;images"
+ --add-data "images/base.png;images"
+ --add-data "images/bg.jpg;images"
+ --add-data "images/bird.png;images"
+ --add-data "images/rotated_pipe.png;images"
+ --add-data "images/pipe.png;images"
+ --add-data "sounds/hit.wav;sounds"
+ --add-data "sounds/point.wav;sounds"
+ --add-data "sounds/die.wav;sounds"
+ --windowed --icon ".\icon.ico"
+ .\main.py
