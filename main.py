@@ -1,5 +1,5 @@
 import random  # For generating random numbers
-import sys  # We will use sys.exit to exit the program
+import sys, os  # We will use sys.exit to exit the program
 import pygame
 from pygame.locals import *  # Basic pygame imports
 
@@ -12,11 +12,20 @@ GROUNDY = SCREENHEIGHT * 0.8
 GAME_SPRITES = {}
 GAME_SOUNDS = {}
 
+def resource_path(relative_path):
+    # for PyInstaller
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 PLAYER = 'images/bird.png'
 BACKGROUND = 'images/bg.jpg'
 PIPE = 'images/pipe.png'
 UPIPE = 'images/rotated_pipe.png'
-
 
 def welcomeScreen():
 
@@ -186,32 +195,32 @@ if __name__ == "__main__":
     pygame.display.set_caption('Flappy Bird Game')
 
     GAME_SPRITES['numbers'] = (
-        pygame.image.load('images/0.png').convert_alpha(),
-        pygame.image.load('images/1.png').convert_alpha(),
-        pygame.image.load('images/2.png').convert_alpha(),
-        pygame.image.load('images/3.png').convert_alpha(),
-        pygame.image.load('images/4.png').convert_alpha(),
-        pygame.image.load('images/5.png').convert_alpha(),
-        pygame.image.load('images/6.png').convert_alpha(),
-        pygame.image.load('images/7.png').convert_alpha(),
-        pygame.image.load('images/8.png').convert_alpha(),
-        pygame.image.load('images/9.png').convert_alpha()
+        pygame.image.load(resource_path('images/0.png')).convert_alpha(),
+        pygame.image.load(resource_path('images/1.png')).convert_alpha(),
+        pygame.image.load(resource_path('images/2.png')).convert_alpha(),
+        pygame.image.load(resource_path('images/3.png')).convert_alpha(),
+        pygame.image.load(resource_path('images/4.png')).convert_alpha(),
+        pygame.image.load(resource_path('images/5.png')).convert_alpha(),
+        pygame.image.load(resource_path('images/6.png')).convert_alpha(),
+        pygame.image.load(resource_path('images/7.png')).convert_alpha(),
+        pygame.image.load(resource_path('images/8.png')).convert_alpha(),
+        pygame.image.load(resource_path('images/9.png')).convert_alpha()
     )
-    GAME_SPRITES['base'] = pygame.image.load('images/base.png').convert_alpha()
+    GAME_SPRITES['base'] = pygame.image.load(resource_path('images/base.png')).convert_alpha()
 
     GAME_SPRITES['pipe'] = (
-        pygame.image.load(UPIPE).convert_alpha(),
-        pygame.image.load(PIPE).convert_alpha()
+        pygame.image.load(resource_path(UPIPE)).convert_alpha(),
+        pygame.image.load(resource_path(PIPE)).convert_alpha()
     )
 
-    GAME_SPRITES['background'] = pygame.image.load(BACKGROUND).convert()
+    GAME_SPRITES['background'] = pygame.image.load(resource_path(BACKGROUND)).convert()
 
-    GAME_SPRITES['player'] = pygame.image.load(PLAYER).convert_alpha()
+    GAME_SPRITES['player'] = pygame.image.load(resource_path(PLAYER)).convert_alpha()
 
     # Game Sounds
-    GAME_SOUNDS['die'] = pygame.mixer.Sound('sounds/die.wav')
-    GAME_SOUNDS['hit'] = pygame.mixer.Sound('sounds/hit.wav')
-    GAME_SOUNDS['point'] = pygame.mixer.Sound('sounds/point.wav')
+    GAME_SOUNDS['die'] = pygame.mixer.Sound(resource_path('sounds/die.wav'))
+    GAME_SOUNDS['hit'] = pygame.mixer.Sound(resource_path('sounds/hit.wav'))
+    GAME_SOUNDS['point'] = pygame.mixer.Sound(resource_path('sounds/point.wav'))
 
 while True:
     welcomeScreen()  # Shows a welcome screen until the user starts the game
